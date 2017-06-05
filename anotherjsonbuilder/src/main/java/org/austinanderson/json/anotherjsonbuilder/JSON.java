@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class JSON{
 	private String escapeIt(String value){
+		if(value==null) return "";
 		return value.replace("\"", "\\\"")
 					.replace("\\", "\\\\")
 					.replace("/", "\\/")
@@ -51,7 +52,7 @@ public class JSON{
 		}
         public String build() {
         	return "{"+data.entrySet().stream().
-        			map(entry->entry.getKey()+": "+entry.getValue()).
+        			map(entry->entry.getKey()+":"+entry.getValue()).
         			reduce((str1,str2)->str1+","+str2).orElse("")+"}";
         }
 	}
